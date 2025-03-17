@@ -15,7 +15,8 @@ namespace Exchange_Sort
             int round = 1000;  //số lần chạy để lấy thời gian chạy trung bình
             Random random = new Random();
             Timing timing = new Timing();
-            Ex_Sort ex_Sort = new Ex_Sort();
+            
+          
             int[] arr_random = new int[len];  //Tạo mảng các phần tử random tử 0 đến 100
             int[] arr_increase = new int[len];
             int[] arr_decrease = new int[len];
@@ -27,7 +28,27 @@ namespace Exchange_Sort
             double timecomplexityRunRandom = 0;   //Time complexity (độ phức tạp thời gian) của mảng random
             double timecomplexityRunIncrease = 0; //Time complexity (độ phức tạp thời gian) của mảng tăng dần
             double timecomplexityRunDecrease = 0; //Time complexity (độ phức tạp thời gian) của mảng giảm dần
+            int sameValue_random = 0;
+            int[] arr_test = new int[len];
+            for (int i = 0; i < len; i++)
+            {
+                arr_test[i] = random.Next(0, 100);
+               
+            }
+            for (int i = 0; i < len - 1; i++)
+            {
+                if (arr_test[i] == arr_test[i + 1])
+                {
+                    sameValue_random++;
+                }
+            }
 
+            Ex_Sort ex_Sort_testTability = new Ex_Sort();
+            ex_Sort_testTability.ExSort(arr_test);
+            Console.WriteLine("Số phần tử giống nhau trong mảng random: " + sameValue_random);
+            Console.WriteLine("Số lần không hoán đổi vị trí của mảng random với mảng kích thước 1000 phần tử là: " + ex_Sort_testTability.countloop3);
+            Console.WriteLine("========================================== Running, plese wait .... ==========================================");
+            Ex_Sort ex_Sort = new Ex_Sort();
             for (int i = 0; i < round; i++)   //Chạy 1000 lần để lấy thời gian chạy trung bình
             {
                 for (int j = 0; j < len; j++)
@@ -39,6 +60,7 @@ namespace Exchange_Sort
                 }
                 Array.Sort(arr_increase); //Tạo mảng tăng dần
                 Array.Reverse(arr_decrease); //Tạo mảng giảm dần
+                
 
                 // Random
                 timing.startTime();
