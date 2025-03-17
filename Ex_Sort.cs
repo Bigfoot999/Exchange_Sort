@@ -26,6 +26,7 @@ class Ex_Sort
                 if (arr[i] == arr[j])
                 {
                     countloop3++;
+                    continue;
                 }
                 else if (arr[i] > arr[j])
                 {
